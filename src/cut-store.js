@@ -44,7 +44,7 @@ export default class CutStore {
   copy(id) {
     const cut = this.cuts.get(id);
     if (typeof cut !== 'undefined') {
-      this.cuts.set(this.nextId, cut);
+      this.cuts = this.cuts.set(this.nextId, cut);
       this.nextId = this.nextId + 1;
     }
     return this;

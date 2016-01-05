@@ -8,6 +8,12 @@ class SizeInput extends Component {
   onSizeChange = (e) => {
     this.dispatch('input:size:change', { id: this.props.id, size: e.target.value });
   }
+  copy = () => {
+    this.dispatch('input:copy', this.props.id);
+  }
+  remove = () => {
+    this.dispatch('input:remove', this.props.id);
+  }
   render() {
     const { label, size } = this.props;
     return (
@@ -16,6 +22,8 @@ class SizeInput extends Component {
         <input type="text" value={label} onChange={this.onLabelChange}/>
         size:
         <input type="number" value={size} min={10} max={3650} onChange={this.onSizeChange}/>
+        <button onClick={this.copy}>コピー</button>
+        <button onClick={this.remove}>削除</button>
       </div>
     );
   }

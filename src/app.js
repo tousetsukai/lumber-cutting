@@ -17,28 +17,34 @@ class App extends Flux {
   }
   subscribe() {
     this.on('input:label:change', il => {
-      this.update(state => {
-        return {
-          ...state,
-          store: state.store.updateLabel(il.id, il.label),
-        };
-      });
+      this.update(state => ({
+        ...state,
+        store: state.store.updateLabel(il.id, il.label),
+      }));
     });
     this.on('input:size:change', is => {
-      this.update(state => {
-        return {
-          ...state,
-          store: state.store.updateSize(is.id, is.size),
-        };
-      });
+      this.update(state => ({
+        ...state,
+        store: state.store.updateSize(is.id, is.size),
+      }));
+    });
+    this.on('input:copy', id => {
+      this.update(state => ({
+        ...state,
+        store: state.store.copy(id),
+      }));
+    });
+    this.on('input:remove', id => {
+      this.update(state => ({
+        ...state,
+        store: state.store.remove(id),
+      }));
     });
     this.on('inputs:add', () => {
-      this.update(state => {
-        return {
-          ...state,
-          store: state.store.add(),
-        };
-      });
+      this.update(state => ({
+        ...state,
+        store: state.store.add(),
+      }));
     });
   }
 }
