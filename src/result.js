@@ -16,8 +16,8 @@ class Lumber extends Component {
 
 export default class Result extends Component {
   render = () => {
-    const { cuts } = this.props;
-    const lumbers = calc(cuts);
+    const { store } = this.props;
+    const lumbers = calc(store.all());
     return (
       <div>
         {lumbers.map((lumber, i) => (<Lumber key={i} {...lumber}/>))}

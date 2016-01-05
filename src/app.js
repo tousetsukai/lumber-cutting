@@ -1,11 +1,10 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Flux } from 'flumpt';
-import { List } from 'immutable';
 
-import { SizeInput, SizeInputs } from './size-inputs';
+import CutStore from './cut-store';
 import Result from './result';
-import { lumberSize } from './constants';
+import SizeInputs from './size-inputs';
 
 class App extends Flux {
   render(state) {
@@ -17,46 +16,27 @@ class App extends Flux {
     );
   }
   subscribe() {
-    this.on('input:label:change', o => {
+    this.on('input:label:change', il => {
       this.update(state => {
-        const newCuts = state.cuts.update(o.id, cut => ({
-          ...cut,
-          label: o.label,
-        }));
         return {
           ...state,
-          cuts: newCuts,
+          store: state.store.updateLabel(il.id, il.label),
         };
       });
     });
-    this.on('input:size:change', o => {
+    this.on('input:size:change', is => {
       this.update(state => {
-        const newCuts = state.cuts.update(o.id, cut => ({
-          ...cut,
-          size: o.size,
-        }));
         return {
           ...state,
-          cuts: newCuts,
+          store: state.store.updateSize(is.id, is.size),
         };
       });
     });
     this.on('inputs:add', () => {
       this.update(state => {
-        const id = state.inputs.count();
-        const initial = {
-          id: id,
-          label: '',
-          size: lumberSize,
-        };
-        const newInputs = state.inputs.push(
-          <SizeInput key={id} {...initial}/>
-        );
-        const newCuts = state.cuts.push(initial);
         return {
           ...state,
-          inputs: newInputs,
-          cuts: newCuts,
+          store: state.store.add(),
         };
       });
     });
@@ -68,8 +48,7 @@ export default new App({
     render(el, document.getElementById('app'));
   },
   initialState: {
-    cuts: List(),
-    inputs: List(),
+    store: new CutStore(),
   },
   middlewares: [],
 });

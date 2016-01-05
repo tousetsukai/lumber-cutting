@@ -1,7 +1,7 @@
 import React from 'react';
 import { Component } from 'flumpt';
 
-export class SizeInput extends Component {
+class SizeInput extends Component {
   onLabelChange = (e) => {
     this.dispatch('input:label:change', { id: this.props.id, label: e.target.value });
   }
@@ -13,22 +13,24 @@ export class SizeInput extends Component {
     return (
       <div>
         label:
-        <input type="text" defaultValue={label} onChange={this.onLabelChange}/>
+        <input type="text" value={label} onChange={this.onLabelChange}/>
         size:
-        <input type="number" defaultValue={size} onChange={this.onSizeChange}/>
+        <input type="number" value={size} min={10} max={3650} onChange={this.onSizeChange}/>
       </div>
     );
   }
 }
 
-export class SizeInputs extends Component {
+export default class SizeInputs extends Component {
   addInput = () => {
     this.dispatch('inputs:add');
   }
   render() {
     return (
       <div>
-        {this.props.inputs}
+        {this.props.store.all().map(cut => (
+           <SizeInput key={cut.id} {...cut}/>
+        ))}
         <button onClick={this.addInput}>カットの追加</button>
       </div>
     );
