@@ -39,6 +39,7 @@
     "eslint-plugin-react": "^3.14.0",
     "eslint-watch": "^2.1.4",
     "json-loader": "^0.5.4",
+    "kickstart-node": "^3.0.75",
     "webpack": "^1.12.9"
   }
 }
