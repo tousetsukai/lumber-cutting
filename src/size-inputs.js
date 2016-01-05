@@ -17,13 +17,13 @@ class SizeInput extends Component {
   render() {
     const { label, size } = this.props;
     return (
-      <div>
-        label:
+      <div className="form_group form_group-horizontal">
+        <label>名前</label>
         <input type="text" value={label} onChange={this.onLabelChange}/>
-        size:
+        <label>長さ(mm)</label>
         <input type="number" value={size} min={10} max={3650} onChange={this.onSizeChange}/>
         <button onClick={this.copy}>コピー</button>
-        <button onClick={this.remove}>削除</button>
+        <button onClick={this.remove}>x</button>
       </div>
     );
   }

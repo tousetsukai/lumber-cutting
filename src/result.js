@@ -2,13 +2,27 @@ import React from 'react';
 import { Component } from 'flumpt';
 
 import calc from './calc';
+import { lumberSize } from './constants';
 
 class Lumber extends Component {
   render() {
     const { cuts } = this.props;
+    const cutStyles = (cut) => ({
+      width: `${cut.size / lumberSize * 100}%`,
+    });
     return (
-      <div style={{ width: '1000px', height: '20px', display: 'flex', backgroundColor: '#999999' }}>
-        {cuts.map((cut, i) => (<div key={i}>[{cut.label}:{cut.size}]</div>))}
+      <div className="lumber-wrapper">
+        <p className="lumber-info">{cuts.map((cut, i) => {
+            return <span key={i} className="cut">{cut.label}<span className="size">{cut.size}</span></span>;
+          })}</p>
+        <div className="lumber">
+          {cuts.map((cut, i) => (
+             <div key={i} style={cutStyles(cut)} className="cut">
+               {cut.label}
+               <span className="size">{cut.size}</span>
+             </div>)
+           )}
+        </div>
       </div>
     );
   }
@@ -19,9 +33,9 @@ export default class Result extends Component {
     const { store } = this.props;
     const lumbers = calc(store.all());
     return (
-      <div>
-        {lumbers.map((lumber, i) => (<Lumber key={i} {...lumber}/>))}
-      </div>
+      <ol className="result">
+        {lumbers.map((lumber, i) => (<li key={i}><Lumber {...lumber}/></li>))}
+      </ol>
     );
   }
 }
