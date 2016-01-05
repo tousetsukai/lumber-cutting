@@ -1,48 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Flux, Component } from 'flumpt';
+import { Flux } from 'flumpt';
+import { List } from 'immutable';
 
-class SizeInput extends Component {
-  onLabelChange = (e) => {
-    this.dispatch('input:label:change', { id: this.props.id, label: e.target.value });
-  }
-  onSizeChange = (e) => {
-    this.dispatch('input:size:change', { id: this.props.id, size: e.target.value });
-  }
-  render() {
-    return (
-      <div>
-        label:
-        <input type="text" onChange={this.onLabelChange}/>
-        size:
-        <input type="number" onChange={this.onSizeChange}/>
-      </div>
-    );
-  }
-}
-
-class SizeInputs extends Component {
-  addInput = () => {
-    console.log('click');
-    this.dispatch('inputs:add');
-  }
-  render() {
-    return (
-      <div>
-        {this.props.inputs}
-        <button onClick={this.addInput}>木材の追加</button>
-      </div>
-    );
-  }
-}
-
-class Result extends Component {
-  render = () => {
-    return (
-      <p>{JSON.stringify(this.props)}</p>
-    );
-  }
-}
+import { SizeInput, SizeInputs } from './size-inputs';
+import Result from './result';
+import { lumberSize } from './constants';
 
 class App extends Flux {
   render(state) {
@@ -56,53 +19,44 @@ class App extends Flux {
   subscribe() {
     this.on('input:label:change', o => {
       this.update(state => {
-        const newLumbers = state.lumbers.map(lumber => {
-          if (lumber.id === o.id) {
-            return {
-              ...lumber,
-              label: o.label,
-            };
-          } else {
-            return lumber;
-          }
-        });
+        const newCuts = state.cuts.update(o.id, cut => ({
+          ...cut,
+          label: o.label,
+        }));
         return {
           ...state,
-          lumbers: newLumbers,
+          cuts: newCuts,
         };
       });
     });
     this.on('input:size:change', o => {
       this.update(state => {
-        const newLumbers = state.lumbers.map(lumber => {
-          if (lumber.id === o.id) {
-            return {
-              ...lumber,
-              size: o.size,
-            };
-          } else {
-            return lumber;
-          }
-        });
+        const newCuts = state.cuts.update(o.id, cut => ({
+          ...cut,
+          size: o.size,
+        }));
         return {
           ...state,
-          lumbers: newLumbers,
+          cuts: newCuts,
         };
       });
     });
     this.on('inputs:add', () => {
-      console.log('inputs:add');
       this.update(state => {
-        console.log(state);
-        const id = state.inputs.length;
-        const newInputs = state.inputs.concat([
-          <SizeInput key={id} id={id}/>
-        ]);
-        const newLumbers = state.lumbers.concat([{ id: id, label: '', size: 0 }]);
+        const id = state.inputs.count();
+        const initial = {
+          id: id,
+          label: '',
+          size: lumberSize,
+        };
+        const newInputs = state.inputs.push(
+          <SizeInput key={id} {...initial}/>
+        );
+        const newCuts = state.cuts.push(initial);
         return {
           ...state,
           inputs: newInputs,
-          lumbers: newLumbers,
+          cuts: newCuts,
         };
       });
     });
@@ -114,8 +68,8 @@ export default new App({
     render(el, document.getElementById('app'));
   },
   initialState: {
-    lumbers: [],
-    inputs: [],
+    cuts: List(),
+    inputs: List(),
   },
   middlewares: [],
 });
