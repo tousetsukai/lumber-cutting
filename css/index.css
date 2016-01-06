@@ -41,13 +41,7 @@ body {
     padding: 0;
     font-size: 18px;
     .cut {
-      margin-right: 2px;
-      &:after {
-        content: ", ";
-      }
-      &:last-child:after {
-        content: none;
-      }
+      margin-right: 10px;
       .cut-size {
         font-size: 12px;
         color: gray;
@@ -67,6 +61,9 @@ body {
         position: relative;
         top: 3px;
       }
+    }
+    .lumber-rest {
+      color: gray;
     }
   }
   .lumber {

@@ -7,7 +7,7 @@ import { lumberSize } from './constants';
 
 class Lumber extends Component {
   render() {
-    const { cuts } = this.props;
+    const { rest, cuts } = this.props;
     const cutStyles = (cut) => ({
       width: `${cut.size / lumberSize * 100}%`,
       backgroundColor: `rgba(${cut.color.r},${cut.color.g},${cut.color.b},${cut.color.a})`,
@@ -27,7 +27,9 @@ class Lumber extends Component {
                <span className="cut-label">{cut.label}</span>
                <span className="cut-size">{cut.size}</span>
              </span>
-          ))}</p>
+           ))}
+          <span className="lumber-rest">残り{rest}mm</span>
+        </p>
         <div className="lumber">
           {
             cuts.map((cut, i) => {
