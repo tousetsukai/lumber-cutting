@@ -6,19 +6,10 @@ const initialCut = {
   label: '',
   size: lumberSize,
   color: {
-    hex: '#000',
-    rgb: {
-      r: 0,
-      g: 0,
-      b: 0,
-      a: 0,
-    },
-    hsl: {
-      h: 0,
-      s: 0,
-      l: 0,
-      a: 0,
-    },
+    r: 255,
+    g: 240,
+    b: 215,
+    a: 1,
   },
 };
 
