@@ -19,6 +19,7 @@ class SizeInput extends Component {
     this.dispatch('input:size:change', { id: this.props.id, size: e.target.value });
   }
   onColorChange = (color) => {
+    this.onCloseColorPicker();
     this.dispatch('input:color:change', { id: this.props.id, color: color.rgb });
   }
   openColorPicker = () => {
@@ -43,12 +44,13 @@ class SizeInput extends Component {
                      onChangeComplete={this.onColorChange}
                      onClose={this.onCloseColorPicker}
                      color={color}
+                     className='color-picker'
                      positionCSS={{
                        position: 'absolute',
                        top: '50px',
                        left: '0',
                      }}
-                     type="sketch"/>}
+                     type="swatches"/>}
         <label>名前</label>
         <input type="text" value={label} onChange={this.onLabelChange}/>
         <label>長さ(mm)</label>
