@@ -25,6 +25,8 @@
   "homepage": "https://github.com/satsukita-andon/lumber-cutting#readme",
   "dependencies": {
     "color": "^0.11.1",
+    "csv-parse": "^1.0.1",
+    "csv-stringify": "0.0.8",
     "flumpt": "^0.1.4",
     "immutable": "^3.7.6",
     "react": "^0.14.5",

@@ -49,8 +49,12 @@ export default class CutStore {
     return this;
   }
 
-  add() {
-    this.cuts = this.cuts.set(this.nextId, initialCut(this.nextId));
+  addDefault() {
+    return this.add(initialCut(this.nextId));
+  }
+
+  add(cut) {
+    this.cuts = this.cuts.set(this.nextId, cut);
     this.nextId = this.nextId + 1;
     return this;
   }
@@ -69,5 +73,11 @@ export default class CutStore {
       id: kv[0],
       ...kv[1],
     }));
+  }
+
+  import(data) {
+    return data.reduce((store, cut) => {
+      return store.add(cut);
+    }, this);
   }
 }

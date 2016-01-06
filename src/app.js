@@ -5,12 +5,14 @@ import { Flux } from 'flumpt';
 import CutStore from './cut-store';
 import Result from './result';
 import SizeInputs from './size-inputs';
+import Csv from './csv';
 
 class App extends Flux {
   render(state) {
     return (
       <div>
         <SizeInputs {...state}/>
+        <Csv {...state}/>
         <Result {...state}/>
       </div>
     );
@@ -49,7 +51,13 @@ class App extends Flux {
     this.on('inputs:add', () => {
       this.update(state => ({
         ...state,
-        store: state.store.add(),
+        store: state.store.addDefault(),
+      }));
+    });
+    this.on('inputs:import', data => {
+      this.update(state => ({
+        ...state,
+        store: state.store.import(data),
       }));
     });
   }
