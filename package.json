@@ -28,7 +28,6 @@
     "csv-parse": "^1.0.1",
     "csv-stringify": "0.0.8",
     "flumpt": "^0.1.4",
-    "immutable": "^3.7.6",
     "react": "^0.14.5",
     "react-color": "^1.3.0",
     "react-dom": "^0.14.5"
