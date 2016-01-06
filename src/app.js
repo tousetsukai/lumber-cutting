@@ -95,6 +95,10 @@ class App extends Flux {
     this.on('inputs:import', data => {
       this.update(state => {
         state.store.import(data);
+        window.k$.status({
+          text: 'インポートが完了しました',
+          type: 'status-green',
+        });
         return state;
       });
     });
