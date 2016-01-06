@@ -8,7 +8,9 @@
     "build": "./node_modules/webpack/bin/webpack.js --colors --progress --config webpack.config.js",
     "watch": "./node_modules/webpack/bin/webpack.js --watch --colors --progress --config webpack.config.js",
     "lint": "./node_modules/eslint-watch/bin/esw -w src",
-    "css": "./node_modules/postcss-cli/bin/postcss -w -c postcss.config.js"
+    "css": "./node_modules/postcss-cli/bin/postcss -w -c postcss.config.js",
+    "build-css": "./node_modules/postcss-cli/bin/postcss -c postcss.config.js",
+    "release": "npm run build && npm run build-css && cp -r dist tmp && cp index.html tmp/ && git checkout gh-pages && mv tmp/index.html ./ && mv tmp/* dist/ && rmdir tmp && git add . && git commit && git push origin gh-pages"
   },
   "repository": {
     "type": "git",
