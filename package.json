@@ -1,6 +1,6 @@
 {
   "name": "lumber-cutting",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "description": "lumber cutting for andon",
   "main": "src/index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "lint": "./node_modules/eslint-watch/bin/esw -w src",
     "css": "./node_modules/postcss-cli/bin/postcss -w -c postcss.config.js",
     "build-css": "./node_modules/postcss-cli/bin/postcss -c postcss.config.js",
-    "release": "npm run build && npm run build-css && cp -r dist tmp && cp index.html tmp/ && git checkout gh-pages && mv tmp/index.html ./ && mv tmp/* dist/ && rmdir tmp && git add . && git commit && git push origin gh-pages"
+    "release": "./release.sh"
   },
   "repository": {
     "type": "git",
