@@ -8,13 +8,22 @@ import { lumberSize } from './constants';
 class Lumber extends Component {
   render() {
     const { rest, cuts } = this.props;
-    const cutStyles = (cut) => ({
-      width: `${cut.size / lumberSize * 100}%`,
-      backgroundColor: `rgba(${cut.color.r},${cut.color.g},${cut.color.b},${cut.color.a})`,
-    });
-    const cutSizeStyles = (color) => ({
-      color: color.light() ? '#555' : '#ddd',
-    });
+    const cutStyles = (cut, color) => {
+      const { r, g, b, a } = cut.color;
+      const bc = Math.floor(color.luminosity() * 200);
+      return {
+        width: `${cut.size / lumberSize * 100}%`,
+        backgroundColor: `rgba(${r},${g},${b},${a})`,
+        borderColor: `rgb(${bc},${bc},${bc})`,
+      };
+    };
+    const cutSizeStyles = (color) => {
+      const l = color.luminosity();
+      const bc = Math.floor((l >= 0.5) ? (l * 256 - 128) : 243);
+      return {
+        color: `rgb(${bc},${bc},${bc})`,
+      };
+    };
     const cutColorStyle = (color) => ({
       backgroundColor: `rgba(${color.r},${color.g},${color.b},${color.a})`,
     });
@@ -35,7 +44,7 @@ class Lumber extends Component {
             cuts.map((cut, i) => {
               const color = Color(cut.color);
               return (
-                <div key={i} style={cutStyles(cut)} className="cut">
+                <div key={i} style={cutStyles(cut, color)} className="cut">
                   <span style={cutSizeStyles(color)} className="cut-size">
                     {cut.size}mm
                   </span>
