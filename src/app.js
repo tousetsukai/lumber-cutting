@@ -19,13 +19,19 @@ class App extends Flux {
     this.on('input:label:change', il => {
       this.update(state => ({
         ...state,
-        store: state.store.updateLabel(il.id, il.label),
+        store: state.store.updateLabelOf(il.id, il.label),
       }));
     });
     this.on('input:size:change', is => {
       this.update(state => ({
         ...state,
-        store: state.store.updateSize(is.id, is.size),
+        store: state.store.updateSizeOf(is.id, is.size),
+      }));
+    });
+    this.on('input:color:change', ic => {
+      this.update(state => ({
+        ...state,
+        store: state.store.updateColorOf(ic.id, ic.color),
       }));
     });
     this.on('input:copy', id => {

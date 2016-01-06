@@ -5,6 +5,21 @@ import { lumberSize } from './constants';
 const initialCut = {
   label: '',
   size: lumberSize,
+  color: {
+    hex: '#000',
+    rgb: {
+      r: 0,
+      g: 0,
+      b: 0,
+      a: 0,
+    },
+    hsl: {
+      h: 0,
+      s: 0,
+      l: 0,
+      a: 0,
+    },
+  },
 };
 
 export default class CutStore {
@@ -14,7 +29,7 @@ export default class CutStore {
     this.nextId = 0;
   }
 
-  updateLabel(id, label) {
+  updateLabelOf(id, label) {
     this.cuts = this.cuts.update(id, cut => ({
       ...cut,
       label,
@@ -22,10 +37,18 @@ export default class CutStore {
     return this;
   }
 
-  updateSize(id, size) {
+  updateSizeOf(id, size) {
     this.cuts = this.cuts.update(id, cut => ({
       ...cut,
       size,
+    }));
+    return this;
+  }
+
+  updateColorOf(id, color) {
+    this.cuts = this.cuts.update(id, cut => ({
+      ...cut,
+      color,
     }));
     return this;
   }
@@ -53,8 +76,7 @@ export default class CutStore {
   all() {
     return this.cuts.entrySeq().map((kv) => ({
       id: kv[0],
-      label: kv[1].label,
-      size: kv[1].size,
+      ...kv[1],
     }));
   }
 }
