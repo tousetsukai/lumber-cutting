@@ -6,6 +6,12 @@ class SizeInput extends Component {
   state = {
     displayColorPicker: false,
   }
+  shouldComponentUpdate(nextProps, nextState) {
+    return (nextProps.label !== this.props.label ||
+            nextProps.size !== this.props.size ||
+            JSON.stringify(nextProps.color) !== JSON.stringify(this.props.color) ||
+            nextState.displayColorPicker !== this.state.displayColorPicker);
+  }
   onLabelChange = (e) => {
     this.dispatch('input:label:change', { id: this.props.id, label: e.target.value });
   }
@@ -32,6 +38,7 @@ class SizeInput extends Component {
     return (
       <div className="size-input form_group form_group-horizontal">
         <div style={{backgroundColor: `rgba(${color.r},${color.g},${color.b},${color.a})`}} className="color" onClick={this.openColorPicker}/>
+        {this.state.displayColorPicker &&
         <ColorPicker display={this.state.displayColorPicker}
                      onChangeComplete={this.onColorChange}
                      onClose={this.onCloseColorPicker}
@@ -41,7 +48,7 @@ class SizeInput extends Component {
                        top: '50px',
                        left: '0',
                      }}
-                     type="sketch"/>
+                     type="sketch"/>}
         <label>名前</label>
         <input type="text" value={label} onChange={this.onLabelChange}/>
         <label>長さ(mm)</label>
@@ -56,6 +63,18 @@ class SizeInput extends Component {
 export default class SizeInputs extends Component {
   state = {
     num: 1,
+  }
+  shouldComponentUpdate(nextProps) {
+    return nextProps.tab === 'input' || nextProps.importing;
+  }
+  componentDidUpdate(prevProps) {
+    if (!prevProps.importing && this.props.importing) {
+      window.k$.status({
+        text: 'インポートが完了しました',
+        type: 'status-green',
+      });
+      this.dispatch('inputs:import:done');
+    }
   }
   handleNum = (ev) => {
     this.setState({ num: ev.target.value });

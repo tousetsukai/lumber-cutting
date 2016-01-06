@@ -95,11 +95,18 @@ class App extends Flux {
     this.on('inputs:import', data => {
       this.update(state => {
         state.store.import(data);
-        window.k$.status({
-          text: 'インポートが完了しました',
-          type: 'status-green',
-        });
-        return state;
+        return {
+          ...state,
+          importing: true,
+        };
+      });
+    });
+    this.on('inputs:import:done', () => {
+      this.update(state => {
+        return {
+          ...state,
+          importing: false,
+        };
       });
     });
   }
@@ -112,6 +119,7 @@ export default new App({
   initialState: {
     store: new CutStore(),
     tab: 'input',
+    importing: false,
   },
   middlewares: [],
 });
