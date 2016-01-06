@@ -1,7 +1,6 @@
 import { lumberSize } from './constants';
 
 const initialCut = (id) => ({
-  id: id,
   label: '木材' + id,
   size: lumberSize,
   color: {
@@ -20,34 +19,20 @@ export default class CutStore {
   }
 
   updateLabelOf(id, label) {
-    this.cuts.forEach(cut => {
-      if (cut.id === id) {
-        cut.label = label;
-      }
-    });
+    console.log(this.cuts[id]);
+    this.cuts[id].label = label;
   }
 
   updateSizeOf(id, size) {
-    this.cuts.forEach(cut => {
-      if (cut.id === id) {
-        cut.size = size;
-      }
-    });
+    this.cuts[id].size = size;
   }
 
   updateColorOf(id, color) {
-    this.cuts.forEach(cut => {
-      if (cut.id === id) {
-        cut.color = color;
-      }
-    });
+    this.cuts[id].color = color;
   }
 
   remove(id) {
-    const index = this.cuts.findIndex(cut => cut.id === id);
-    if (index >= 0) {
-      this.cuts.splice(index, 1);
-    }
+    delete this.cuts[id];
   }
 
   addDefault() {
@@ -55,31 +40,28 @@ export default class CutStore {
   }
 
   add(cut) {
-    this.cuts.push(cut);
+    this.cuts[this.nextId] = cut;
     this.nextId = this.nextId + 1;
   }
 
   copy(id) {
-    const cut = this.cuts.find(cut => cut.id === id);
+    const cut = this.cuts[id];
     if (typeof cut !== 'undefined') {
-      this.add({
-        ...cut,
-        id: this.nextId,
-      });
+      this.add({ ...cut });
     }
   }
 
   all() {
-    return this.cuts;
+    return this.cuts.map((cut, id) => ({
+      id,
+      ...cut,
+    }));
   }
 
   import(data) {
     this.cuts = [];
     data.forEach(cut => {
-      this.add({
-        ...cut,
-        id: this.nextId,
-      });
+      this.add(cut);
     });
   }
 }
