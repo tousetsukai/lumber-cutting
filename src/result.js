@@ -50,12 +50,16 @@ class Lumber extends Component {
 
 export default class Result extends Component {
   render = () => {
-    const { store } = this.props;
-    const lumbers = calc(store.all());
-    return (
-      <ol className="result">
-        {lumbers.map((lumber, i) => (<li key={i}><Lumber {...lumber}/></li>))}
-      </ol>
-    );
+    const { store, tab } = this.props;
+    if (tab === 'result') {
+      const lumbers = calc(store.all());
+      return (
+        <ol className="result">
+          {lumbers.map((lumber, i) => (<li key={i}><Lumber {...lumber}/></li>))}
+        </ol>
+      );
+    } else {
+      return <p>計算中...</p>;
+    }
   }
 }

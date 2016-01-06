@@ -57,9 +57,13 @@ export default class Csv extends Component {
     return (
       <div>
         <textarea id="csv-area" className="csv-area"/>
-        <div className="form_group form_group-horizontal">
-          <button onClick={this.read}>import</button>
-          <button onClick={this.write}>export</button>
+        <div className="csv-buttons form_group form_group-horizontal">
+          <button data-ks-tooltip="カット情報を読み込みます"
+                  data-ks-tooltip-position="bottom"
+                  onClick={this.read}>インポート</button>
+          <button data-ks-tooltip="入力されたカット情報を書き出します。コピーして保存してください"
+                  data-ks-tooltip-position="bottom"
+                  onClick={this.write}>エクスポート</button>
         </div>
       </div>
     );
