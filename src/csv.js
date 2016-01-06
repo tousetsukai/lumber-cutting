@@ -58,8 +58,8 @@ export default class Csv extends Component {
       <div>
         <textarea id="csv-area" className="csv-area"/>
         <div className="form_group form_group-horizontal">
-          <button onClick={this.read}>CSVを読み込む</button>
-          <button onClick={this.write}>CSVを書き出す</button>
+          <button onClick={this.read}>import</button>
+          <button onClick={this.write}>export</button>
         </div>
       </div>
     );

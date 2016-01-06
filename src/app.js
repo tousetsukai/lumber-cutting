@@ -11,9 +11,29 @@ class App extends Flux {
   render(state) {
     return (
       <div>
-        <SizeInputs {...state}/>
-        <Csv {...state}/>
-        <Result {...state}/>
+        <ul className="tabs" data-ks-tabs>
+          <li className="open">
+            <a href="#tab-input">入力</a>
+          </li>
+          <li>
+            <a href="#tab-csv">インポート/エクスポート</a>
+          </li>
+          <li>
+            <a href="#tab-result">計算結果</a>
+          </li>
+        </ul>
+
+        <div className="tab_pane_container">
+          <article id="tab-input">
+            <SizeInputs {...state}/>
+          </article>
+          <article id="tab-csv">
+            <Csv {...state}/>
+          </article>
+          <article id="tab-result">
+            <Result {...state}/>
+          </article>
+        </div>
       </div>
     );
   }
