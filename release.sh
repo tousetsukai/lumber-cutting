@@ -11,5 +11,5 @@ mv tmp/index.html ./
 mv tmp/* dist/
 rmdir tmp
 git add .
-git commit -m "$(git describe --tags --abbrev=0)"
+git commit -m "$(git describe --tags $(git rev-list --tags --max-count=1))"
 git push origin gh-pages
