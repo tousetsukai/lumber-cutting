@@ -1,6 +1,6 @@
 {
   "name": "lumber-cutting",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "lumber cutting for andon",
   "main": "src/index.js",
   "scripts": {
