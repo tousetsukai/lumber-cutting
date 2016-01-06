@@ -19,7 +19,6 @@ export default class CutStore {
   }
 
   updateLabelOf(id, label) {
-    console.log(this.cuts[id]);
     this.cuts[id].label = label;
   }
 
@@ -35,8 +34,14 @@ export default class CutStore {
     delete this.cuts[id];
   }
 
-  addDefault() {
-    this.add(initialCut(this.nextId));
+  addDefault(num) {
+    if (typeof num === 'undefined') {
+      this.add(initialCut(this.nextId));
+    } else {
+      for (let i = 0; i < num; i++) {
+        this.add(initialCut(this.nextId));
+      }
+    }
   }
 
   add(cut) {

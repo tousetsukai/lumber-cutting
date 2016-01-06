@@ -86,9 +86,9 @@ class App extends Flux {
         return state;
       });
     });
-    this.on('inputs:add', () => {
+    this.on('inputs:add', (num) => {
       this.update(state => {
-        state.store.addDefault();
+        state.store.addDefault(num);
         return state;
       });
     });

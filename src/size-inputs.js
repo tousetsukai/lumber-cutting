@@ -54,8 +54,14 @@ class SizeInput extends Component {
 }
 
 export default class SizeInputs extends Component {
+  state = {
+    num: 1,
+  }
+  handleNum = (ev) => {
+    this.setState({ num: ev.target.value });
+  }
   addInput = () => {
-    this.dispatch('inputs:add');
+    this.dispatch('inputs:add', this.state.num);
   }
   render() {
     return (
@@ -63,7 +69,10 @@ export default class SizeInputs extends Component {
         {this.props.store.all().map(cut => (
            <SizeInput key={cut.id} {...cut}/>
         ))}
-        <button onClick={this.addInput}>追加</button>
+        <div className="form_group form_group-horizontal">
+          <input type="number" value={this.state.num} min={1} max={200} onChange={this.handleNum}/>
+          <button onClick={this.addInput}>追加</button>
+        </div>
       </div>
     );
   }
