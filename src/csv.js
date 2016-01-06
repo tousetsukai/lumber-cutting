@@ -33,7 +33,7 @@ export default class Csv extends Component {
 
   write = () => {
     const { store } = this.props;
-    const data = store.all().toArray().map((cut) => ({
+    const data = store.all().map((cut) => ({
       label: cut.label,
       size: cut.size,
       r: cut.color.r,
