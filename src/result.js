@@ -12,17 +12,18 @@ class Lumber extends Component {
       width: `${cut.size / lumberSize * 100}%`,
       backgroundColor: `rgba(${cut.color.r},${cut.color.g},${cut.color.b},${cut.color.a})`,
     });
-    const cutLabelStyles = (color) => ({
-      color: color.light() ? '#333' : '#eee',
-    });
     const cutSizeStyles = (color) => ({
-      color: color.light() ? '#555' : '#aaa',
+      color: color.light() ? '#555' : '#ddd',
+    });
+    const cutColorStyle = (color) => ({
+      backgroundColor: `rgba(${color.r},${color.g},${color.b},${color.a})`,
     });
     return (
       <div className="lumber-wrapper">
         <p className="lumber-info">
           {cuts.map((cut, i) => (
              <span key={i} className="cut">
+               <span style={cutColorStyle(cut.color)} className="cut-color"></span>
                <span className="cut-label">{cut.label}</span>
                <span className="cut-size">{cut.size}</span>
              </span>
@@ -33,8 +34,9 @@ class Lumber extends Component {
               const color = Color(cut.color);
               return (
                 <div key={i} style={cutStyles(cut)} className="cut">
-                  <span style={cutLabelStyles(color)} className="cut-label">{cut.label}</span>
-                  <span style={cutSizeStyles(color)} className="cut-size">{cut.size}</span>
+                  <span style={cutSizeStyles(color)} className="cut-size">
+                    {cut.size}mm
+                  </span>
                 </div>
               );
             })}
