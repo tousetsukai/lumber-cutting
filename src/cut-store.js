@@ -76,6 +76,7 @@ export default class CutStore {
   }
 
   import(data) {
+    this.cuts = this.cuts.clear();
     return data.reduce((store, cut) => {
       return store.add(cut);
     }, this);
