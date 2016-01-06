@@ -1,8 +1,7 @@
-import { OrderedMap } from 'immutable';
-
 import { lumberSize } from './constants';
 
 const initialCut = (id) => ({
+  id: id,
   label: '木材' + id,
   size: lumberSize,
   color: {
@@ -16,69 +15,71 @@ const initialCut = (id) => ({
 export default class CutStore {
 
   constructor() {
-    this.cuts = OrderedMap(); // cuts: OrderedMap[number, Cut]
+    this.cuts = []; // cuts: Array[Cut]
     this.nextId = 1; // 1 origin for high-school students :)
   }
 
   updateLabelOf(id, label) {
-    this.cuts = this.cuts.update(id, cut => ({
-      ...cut,
-      label,
-    }));
-    return this;
+    this.cuts.forEach(cut => {
+      if (cut.id === id) {
+        cut.label = label;
+      }
+    });
   }
 
   updateSizeOf(id, size) {
-    this.cuts = this.cuts.update(id, cut => ({
-      ...cut,
-      size,
-    }));
-    return this;
+    this.cuts.forEach(cut => {
+      if (cut.id === id) {
+        cut.size = size;
+      }
+    });
   }
 
   updateColorOf(id, color) {
-    this.cuts = this.cuts.update(id, cut => ({
-      ...cut,
-      color,
-    }));
-    return this;
+    this.cuts.forEach(cut => {
+      if (cut.id === id) {
+        cut.color = color;
+      }
+    });
   }
 
   remove(id) {
-    this.cuts = this.cuts.delete(id);
-    return this;
+    const index = this.cuts.findIndex(cut => cut.id === id);
+    if (index >= 0) {
+      this.cuts.splice(index, 1);
+    }
   }
 
   addDefault() {
-    return this.add(initialCut(this.nextId));
+    this.add(initialCut(this.nextId));
   }
 
   add(cut) {
-    this.cuts = this.cuts.set(this.nextId, cut);
+    this.cuts.push(cut);
     this.nextId = this.nextId + 1;
-    return this;
   }
 
   copy(id) {
-    const cut = this.cuts.get(id);
+    const cut = this.cuts.find(cut => cut.id === id);
     if (typeof cut !== 'undefined') {
-      this.cuts = this.cuts.set(this.nextId, cut);
-      this.nextId = this.nextId + 1;
+      this.add({
+        ...cut,
+        id: this.nextId,
+      });
     }
-    return this;
   }
 
   all() {
-    return this.cuts.entrySeq().map((kv) => ({
-      id: kv[0],
-      ...kv[1],
-    }));
+    return this.cuts;
   }
 
   import(data) {
-    this.cuts = this.cuts.clear();
-    return data.reduce((store, cut) => {
-      return store.add(cut);
-    }, this);
+    this.cuts = [];
+    data.forEach(cut => {
+      this.add({
+        ...cut,
+        id: this.nextId,
+      });
+    });
   }
 }

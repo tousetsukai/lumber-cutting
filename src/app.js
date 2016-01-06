@@ -57,46 +57,46 @@ class App extends Flux {
       }));
     });
     this.on('input:label:change', il => {
-      this.update(state => ({
-        ...state,
-        store: state.store.updateLabelOf(il.id, il.label),
-      }));
+      this.update(state => {
+        state.store.updateLabelOf(il.id, il.label);
+        return state;
+      });
     });
     this.on('input:size:change', is => {
-      this.update(state => ({
-        ...state,
-        store: state.store.updateSizeOf(is.id, is.size),
-      }));
+      this.update(state => {
+        state.store.updateSizeOf(is.id, is.size);
+        return state;
+      });
     });
     this.on('input:color:change', ic => {
-      this.update(state => ({
-        ...state,
-        store: state.store.updateColorOf(ic.id, ic.color),
-      }));
+      this.update(state => {
+        state.store.updateColorOf(ic.id, ic.color);
+        return state;
+      });
     });
     this.on('input:copy', id => {
-      this.update(state => ({
-        ...state,
-        store: state.store.copy(id),
-      }));
+      this.update(state => {
+        state.store.copy(id);
+        return state;
+      });
     });
     this.on('input:remove', id => {
-      this.update(state => ({
-        ...state,
-        store: state.store.remove(id),
-      }));
+      this.update(state => {
+        state.store.remove(id);
+        return state;
+      });
     });
     this.on('inputs:add', () => {
-      this.update(state => ({
-        ...state,
-        store: state.store.addDefault(),
-      }));
+      this.update(state => {
+        state.store.addDefault();
+        return state;
+      });
     });
     this.on('inputs:import', data => {
-      this.update(state => ({
-        ...state,
-        store: state.store.import(data),
-      }));
+      this.update(state => {
+        state.store.import(data);
+        return state;
+      });
     });
   }
 }
