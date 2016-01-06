@@ -12,13 +12,13 @@ class App extends Flux {
     return (
       <div>
         <ul className="tabs" data-ks-tabs>
-          <li className="open">
+          <li className="open tab-input-tab">
             <a href="#tab-input">入力</a>
           </li>
-          <li>
+          <li className="tab-csv-tab">
             <a href="#tab-csv">インポート/エクスポート</a>
           </li>
-          <li>
+          <li className="tab-result-tab">
             <a href="#tab-result">計算結果</a>
           </li>
         </ul>
