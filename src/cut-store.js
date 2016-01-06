@@ -2,22 +2,22 @@ import { OrderedMap } from 'immutable';
 
 import { lumberSize } from './constants';
 
-const initialCut = {
-  label: '',
+const initialCut = (id) => ({
+  label: '木材' + id,
   size: lumberSize,
   color: {
-    r: 255,
-    g: 240,
-    b: 215,
+    r: 240,
+    g: 225,
+    b: 170,
     a: 1,
   },
-};
+});
 
 export default class CutStore {
 
   constructor() {
     this.cuts = OrderedMap(); // cuts: OrderedMap[number, Cut]
-    this.nextId = 0;
+    this.nextId = 1; // 1 origin for high-school students :)
   }
 
   updateLabelOf(id, label) {
@@ -50,7 +50,7 @@ export default class CutStore {
   }
 
   add() {
-    this.cuts = this.cuts.set(this.nextId, initialCut);
+    this.cuts = this.cuts.set(this.nextId, initialCut(this.nextId));
     this.nextId = this.nextId + 1;
     return this;
   }

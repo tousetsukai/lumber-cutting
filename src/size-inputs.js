@@ -29,14 +29,9 @@ class SizeInput extends Component {
   }
   render() {
     const { label, size, color } = this.props;
-    console.log(this.props.id, this.state.displayColorPicker);
     return (
       <div className="size-input form_group form_group-horizontal">
-        <label>名前</label>
-        <input type="text" value={label} onChange={this.onLabelChange}/>
-        <label>長さ(mm)</label>
-        <input type="number" value={size} min={10} max={3650} onChange={this.onSizeChange}/>
-        <button onClick={this.openColorPicker}>色</button>
+        <div style={{backgroundColor: `rgba(${color.r},${color.g},${color.b},${color.a})`}} className="color" onClick={this.openColorPicker}/>
         <ColorPicker display={this.state.displayColorPicker}
                      onChangeComplete={this.onColorChange}
                      onClose={this.onCloseColorPicker}
@@ -44,10 +39,13 @@ class SizeInput extends Component {
                      positionCSS={{
                        position: 'absolute',
                        top: '50px',
-                       left: '350px',
+                       left: '0',
                      }}
                      type="sketch"/>
-        <div style={{backgroundColor: `rgba(${color.r},${color.g},${color.b},${color.a})`}} className="color"/>
+        <label>名前</label>
+        <input type="text" value={label} onChange={this.onLabelChange}/>
+        <label>長さ(mm)</label>
+        <input type="number" value={size} min={10} max={3650} onChange={this.onSizeChange}/>
         <button onClick={this.copy}>コピー</button>
         <button onClick={this.remove}>x</button>
       </div>
@@ -65,7 +63,7 @@ export default class SizeInputs extends Component {
         {this.props.store.all().map(cut => (
            <SizeInput key={cut.id} {...cut}/>
         ))}
-        <button onClick={this.addInput}>カットの追加</button>
+        <button onClick={this.addInput}>追加</button>
       </div>
     );
   }
