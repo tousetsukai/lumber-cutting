@@ -6,27 +6,45 @@ body {
   padding: 10px;
 }
 
+.tabs .tab-input-tab a {background-color: #E0F8F1;}
+
+.tabs .tab-csv-tab a {background-color: #E0F8E0;}
+
+.tabs .tab-result-tab a {background-color: #F1F8E0;}
+
 .size-input {
   position: relative;
 }
 
 .size-input .color {width: 40px;height: 40px;border: 4px solid #eee;border-radius: 20px;cursor: pointer;}
+
+.csv-area {
+  width: 100%;
+  height: 200px;
+}
+
+.csv-buttons {
+  margin-top: 20px;
+}
+
 .result {
   margin: 0;
   padding: 0;
   list-style-type: none;
 }
-.result li {counter-increment: lumber-counter;font-size: 2em;margin-top: 20px;}
+
+.result li {counter-increment: lumber-counter;font-size: 1.8em;margin-top: 24px;}
+
 .result li:before {content: counter(lumber-counter);margin-right: 5px;font-size: 100%;background-color: rgb(0,200,200);color: white;font-weight: bold;padding: 3px 10px;border-radius: 3px;}
 .lumber-wrapper {
   margin-top: 10px;
 }
-.lumber-wrapper .lumber-info {margin: 0;padding: 0;font-size: 18px;}
+.lumber-wrapper .lumber-info {margin: 0;padding: 0;font-size: 15px;}
 .lumber-wrapper .lumber-info .cut {margin-right: 10px;}
 .lumber-wrapper .lumber-info .cut .cut-size {font-size: 12px;color: gray;}
 .lumber-wrapper .lumber-info .cut .cut-size:before {content: " (";}
 .lumber-wrapper .lumber-info .cut .cut-size:after {content: "mm)";}
-.lumber-wrapper .lumber-info .cut .cut-color {display: inline-block;width: 20px;height: 20px;border: 2px solid #eee;border-radius: 10px;position: relative;top: 3px;}
+.lumber-wrapper .lumber-info .cut .cut-color {display: inline-block;width: 18px;height: 18px;border: 2px solid #eee;border-radius: 9px;position: relative;top: 3px;}
 .lumber-wrapper .lumber-info .lumber-rest {color: gray;}
 .lumber-wrapper .lumber {width: 100%;height: 22px;background-color: #F7F1D7;line-height: 14px;display: -webkit-box;display: -webkit-flex;display: -ms-flexbox;display: flex;}
 .lumber-wrapper .lumber .cut {border: 1px solid #888;text-align: center;}
