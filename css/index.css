@@ -31,13 +31,23 @@ body {
   }
 }
 
-.csv-area {
-  width: 100%;
-  height: 200px;
+.csv-area-wrapper {
+  &:first-child {
+    margin-bottom: 30px;
+  }
+  &:last-child {
+    margin-top: 30px;
+  }
+  .csv-area {
+    width: 100%;
+    height: 200px;
+  }
+  .csv-buttons {
+    margin-top: 20px;
+  }
 }
-
-.csv-buttons {
-  margin-top: 20px;
+hr {
+  border-top: 1px dashed #bbb;
 }
 
 .result {

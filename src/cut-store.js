@@ -1,7 +1,7 @@
 import { lumberSize } from './constants';
 
 const initialCut = (id) => ({
-  label: '木材' + id,
+  label: '支柱' + id,
   size: lumberSize,
   color: {
     r: 240,
