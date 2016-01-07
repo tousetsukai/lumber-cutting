@@ -22,13 +22,15 @@ body {
 
 .size-input div[style*="overflow-y:scroll;"] {height: auto !important;}
 
-.csv-area {
-  width: 100%;
-  height: 200px;
-}
+.csv-area-wrapper:first-child {margin-bottom: 30px;}
 
-.csv-buttons {
-  margin-top: 20px;
+.csv-area-wrapper:last-child {margin-top: 30px;}
+
+.csv-area-wrapper .csv-area {width: 100%;height: 200px;}
+
+.csv-area-wrapper .csv-buttons {margin-top: 20px;}
+hr {
+  border-top: 1px dashed #bbb;
 }
 
 .result {
