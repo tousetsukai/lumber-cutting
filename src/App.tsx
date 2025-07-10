@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { CutInputs } from './components/CutInputs';
+import { CutOutputs } from './components/CutOutputs';
+import { Csv } from './components/Csv';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div className="p-6">
+      <Tabs defaultValue="input">
+        <TabsList>
+          <TabsTrigger value="input">入力</TabsTrigger>
+          <TabsTrigger value="output">計算結果</TabsTrigger>
+          <TabsTrigger value="csv">インポート/エクスポート</TabsTrigger>
+        </TabsList>
+        <TabsContent value="input">
+          <CutInputs />
+        </TabsContent>
+        <TabsContent value="output">
+          <CutOutputs />
+        </TabsContent>
+        <TabsContent value="csv">
+          <Csv />
+        </TabsContent>
+      </Tabs>
+    </div>
+  );
 }
 
-export default App
+export default App;
