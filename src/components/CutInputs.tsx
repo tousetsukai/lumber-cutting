@@ -42,7 +42,7 @@ function CutInput({ cut }: { cut: Cut }) {
   const [displayColorPicker, setDisplayColorPicker] = useState(false);
   const store = useCutStore();
   return (
-    <div className="flex gap-2 m-2">
+    <div className="flex max-sm:flex-wrap gap-2 m-2">
       <button
         type="button"
         style={{ backgroundColor: colord(cut.color).toRgbString() }} // tailwind does not support dynamic class names
@@ -59,7 +59,7 @@ function CutInput({ cut }: { cut: Cut }) {
         名前
       </Label>
       <Input
-        className="max-w-60"
+        className="min-w-40 max-w-80 max-sm:w-30"
         type="text"
         value={cut.label}
         id={`label-${cut.id}`}
@@ -69,7 +69,7 @@ function CutInput({ cut }: { cut: Cut }) {
         長さ(mm)
       </Label>
       <Input
-        className="max-w-20"
+        className="min-w-20 max-w-20"
         type="number"
         value={cut.size}
         id={`size-${cut.id}`}
