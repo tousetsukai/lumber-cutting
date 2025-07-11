@@ -1,7 +1,7 @@
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Csv } from './components/Csv';
 import { CutInputs } from './components/CutInputs';
 import { CutOutputs } from './components/CutOutputs';
-import { Csv } from './components/Csv';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 
 function App() {
   return (

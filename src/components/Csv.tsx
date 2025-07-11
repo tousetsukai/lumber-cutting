@@ -1,7 +1,6 @@
 import { useState } from 'react';
-
-import { Button } from './ui/button';
 import { useCutStore } from '@/states/cut-store';
+import { Button } from './ui/button';
 
 export function Csv() {
   const [importArea, setImportArea] = useState('');

@@ -1,7 +1,7 @@
-import { stringify } from 'csv-stringify/browser/esm/sync';
 import { parse } from 'csv-parse/browser/esm/sync';
+import { stringify } from 'csv-stringify/browser/esm/sync';
 
-import { defaultCut, type Cut } from '../data/cut';
+import { type Cut, defaultCut } from '../data/cut';
 
 export function cutsToCsv(cuts: Cut[]): string {
   const data = cuts.map((cut) => ({

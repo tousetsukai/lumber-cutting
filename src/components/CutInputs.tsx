@@ -4,8 +4,8 @@ import { SwatchesPicker } from 'react-color';
 
 import type { Cut } from '../data/cut';
 import { useCutStore } from '../states/cut-store';
-import { Input } from './ui/input';
 import { Button } from './ui/button';
+import { Input } from './ui/input';
 import { Label } from './ui/label';
 
 function ColorPicker({

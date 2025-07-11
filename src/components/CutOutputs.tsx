@@ -1,10 +1,9 @@
 import { colord, extend, type RgbaColor } from 'colord';
 import a11yPlugin from 'colord/plugins/a11y';
-
-import { calc } from '../logic/calc';
 import { lumberSize } from '../constants';
-import { useCutStore } from '../states/cut-store';
 import type { Cut } from '../data/cut';
+import { calc } from '../logic/calc';
+import { useCutStore } from '../states/cut-store';
 
 extend([a11yPlugin]);
 
