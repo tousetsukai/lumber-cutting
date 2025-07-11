@@ -1,4 +1,4 @@
-import { type RgbaColor } from 'colord';
+import type { RgbaColor } from 'colord';
 
 import { lumberSize } from '../constants';
 

@@ -15,7 +15,7 @@ export function Csv() {
   const onChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setImportArea(e.target.value);
     setCompleted(false);
-    };
+  };
 
   return (
     <div>
@@ -36,7 +36,7 @@ export function Csv() {
         />
         <div className="mt-[20px]">
           <Button onClick={importCsv}>読み込む</Button>
-          {completed && (<p>読み込みが完了しました</p>)}
+          {completed && <p>読み込みが完了しました</p>}
         </div>
       </div>
       <hr />

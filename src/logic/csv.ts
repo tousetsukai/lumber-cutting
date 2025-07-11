@@ -22,18 +22,18 @@ export function csvToCuts(csv: string): Cut[] {
   const options = {
     columns: true,
   };
-  const data: any[] = parse(csv, options);
-  return data.map((cut: any, id: number) => {
+  const data: Cut[] = parse(csv, options);
+  return data.map((cut: Cut, id: number) => {
     const d = defaultCut(id);
     return {
       id,
       label: cut.label || d.label,
       size: cut.size || d.size,
       color: {
-        r: (cut.r || d.color.r) * 1,
-        g: (cut.g || d.color.g) * 1,
-        b: (cut.b || d.color.b) * 1,
-        a: (cut.a || d.color.a) * 1,
+        r: (cut.color.r || d.color.r) * 1,
+        g: (cut.color.g || d.color.g) * 1,
+        b: (cut.color.b || d.color.b) * 1,
+        a: (cut.color.a || d.color.a) * 1,
       },
     };
   });

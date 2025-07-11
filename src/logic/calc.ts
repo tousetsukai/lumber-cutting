@@ -1,5 +1,5 @@
-import { type Cut } from "../data/cut";
-import { type Lumber, addCut, defaultLumber } from "../data/lumber";
+import type { Cut } from '../data/cut';
+import { type Lumber, addCut, defaultLumber } from '../data/lumber';
 
 // bin-packing algorithm to calculate lumbers from cuts
 export function calc(cuts: Cut[]): Lumber[] {

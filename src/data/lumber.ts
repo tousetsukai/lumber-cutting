@@ -1,5 +1,5 @@
 import { lumberSize } from '../constants';
-import { type Cut } from './cut';
+import type { Cut } from './cut';
 
 export type Lumber = {
   rest: number;

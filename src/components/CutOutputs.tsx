@@ -4,7 +4,7 @@ import a11yPlugin from 'colord/plugins/a11y';
 import { calc } from '../logic/calc';
 import { lumberSize } from '../constants';
 import { useCutStore } from '../states/cut-store';
-import { type Cut } from '../data/cut';
+import type { Cut } from '../data/cut';
 
 extend([a11yPlugin]);
 
@@ -31,8 +31,8 @@ function Lumber({ rest, cuts }: { rest: number; cuts: Cut[] }) {
   return (
     <div className="mt-[3px]">
       <p className="m-0 p-0">
-        {cuts.map((cut, i) => (
-          <span key={i} className="mr-[10px]">
+        {cuts.map((cut) => (
+          <span key={cut.id} className="mr-[10px]">
             <span
               style={cutColorStyle(cut.color)}
               className="inline-block w-[18px] h-[18px] border-2 border-gray-100 rounded-lg relative top-[3px]"
@@ -44,10 +44,10 @@ function Lumber({ rest, cuts }: { rest: number; cuts: Cut[] }) {
         <span className="text-[12px] text-gray-500">残り{rest}mm</span>
       </p>
       <div className="w-full h-[22px] leading-[14px] bg-[#f7f1d7] flex">
-        {cuts.map((cut, i) => {
+        {cuts.map((cut) => {
           return (
             <div
-              key={i}
+              key={cut.id}
               style={cutStyles(cut)}
               className="border-1 border-gray-300 text-center"
             >
@@ -71,6 +71,7 @@ export function CutOutputs() {
   return (
     <ol className="result">
       {lumbers.map((lumber, i) => (
+        // biome-ignore lint/suspicious/noArrayIndexKey: Using index as key is acceptable here since the list is static and does not change.
         <li key={i}>
           <p className=" mt-[20px] w-[40px] h-[32px] leading-[32px] text-center text-2xl font-bold text-white bg-[rgb(0,200,200)] rounded-xs">
             {i + 1}
